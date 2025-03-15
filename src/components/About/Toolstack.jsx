@@ -4,7 +4,7 @@ import {
 	SiVisualstudiocode,
 	SiPostman,
 	SiVercel,
-	SiWindows11,
+	SiMacos,
 	SiJupyter,
 	SiGooglecolab,
 	SiKaggle,
@@ -14,7 +14,7 @@ function Toolstack() {
 	return (
 		<Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
 			<Col xs={4} md={2} className="tech-icons">
-				<SiWindows11 />
+				<SiMacos />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
 				<SiVisualstudiocode />

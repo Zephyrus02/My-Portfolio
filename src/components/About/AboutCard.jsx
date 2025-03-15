@@ -16,6 +16,8 @@ function AboutCard() {
 						I am persuing B.Tech in Computer Science with specialization in
 						Artificial Intelligence and Machine Learning.
 						<br />
+						I am a Full Stack Developer Intern at Moneyy.ai
+						<br />
 						<br />
 						Apart from coding, some other activities that I love to do!
 					</p>
