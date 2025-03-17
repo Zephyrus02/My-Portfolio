@@ -1,5 +1,5 @@
 // src/components/Chatbot/Chatbot.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Particle from "../Particle";
 import "./Chatbot.css";
@@ -10,6 +10,8 @@ function Chatbot() {
   const [client, setClient] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [healthStatus, setHealthStatus] = useState("checking"); // possible values: "online", "offline", "checking"
+  const webchatRef = useRef(null);
   
   // Using import.meta.env instead of process.env for Vite projects
   const clientId = import.meta.env.VITE_BOTPRESS_CLIENT_ID || "";
@@ -18,22 +20,76 @@ function Chatbot() {
     if (!clientId) {
       console.error("Botpress client ID is missing!");
       setError("Botpress configuration error");
+      setHealthStatus("offline");
       setLoading(false);
       return;
     }
 
     try {
+      // Create botpress client
       const botpressClient = getClient({
         clientId: clientId.trim(),
       });
+      
+      // Store the client in state
       setClient(botpressClient);
+      
+      // Since we can't use onEvent directly, we'll check connection status differently
+      // First, assume the connection might succeed
+      setHealthStatus("checking");
+      
+      // Set a timeout to check if we can get a response
+      const checkConnection = async () => {
+        try {
+          // Try to ping the bot
+          await fetch(`https://cdn.botpress.cloud/webchat/v1/status/${clientId.trim()}`, {
+            method: 'GET',
+          });
+          
+          // If fetch succeeds, we can assume the bot is online
+          setHealthStatus("online");
+          console.log("Botpress connected successfully");
+        } catch (err) {
+          console.error("Failed to connect to Botpress:", err);
+          setHealthStatus("offline");
+        }
+      };
+      
+      checkConnection();
+      
+      // Set a timeout to consider it offline if no connection confirmation after 10 seconds
+      const timeoutId = setTimeout(() => {
+        setHealthStatus(prevStatus => 
+          prevStatus === "checking" ? "offline" : prevStatus
+        );
+      }, 10000);
+      
       setLoading(false);
+      
+      return () => clearTimeout(timeoutId);
     } catch (err) {
       console.error("Error initializing Botpress client:", err);
       setError("Failed to initialize chat");
+      setHealthStatus("offline");
       setLoading(false);
     }
   }, [clientId]);
+
+  // Health indicator component
+  const HealthIndicator = ({ status }) => {
+    return (
+      <div className="health-indicator-container">
+        <div className={`health-indicator ${status}`}>
+          <span className="health-indicator-dot"></span>
+          <span className="health-indicator-text">
+            {status === "online" ? "Chatbot Online" : 
+             status === "offline" ? "Chatbot Offline" : 
+             "Connecting..."}
+          </span>
+        </div>
+      </div>
+    );
+  };
 
   const configuration = {
     color: "#623686", // Using your purple theme color
@@ -60,6 +116,9 @@ function Chatbot() {
               interests!
             </p>
 
+            {/* Health status indicator */}
+            <HealthIndicator status={healthStatus} />
+            
             {loading ? (
               <div className="text-center my-5">
                 <div className="spinner-border text-light" role="status">
@@ -75,7 +134,14 @@ function Chatbot() {
               <WebchatProvider client={client} configuration={configuration}>
                 <div className="custom-chatbot-container">
                   <div className="webchat-container">
-                    <Webchat className="webchat-frame" />
+                    <Webchat 
+                      ref={webchatRef}
+                      className="webchat-frame" 
+                      onReady={() => {
+                        setHealthStatus("online");
+                        console.log("Webchat ready and connected");
+                      }}
+                    />
                   </div>
                 </div>
               </WebchatProvider>
