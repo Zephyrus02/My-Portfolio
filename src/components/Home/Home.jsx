@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import img1 from "/Assets/home/img1.svg";
 import img2 from "/Assets/home/img2.svg";
@@ -10,7 +10,27 @@ import Type from "./Type";
 const images = [img1, img2, img3];
 
 function Home() {
-	var i = Math.floor(Math.random() * 3)
+	const [currentImageIndex, setCurrentImageIndex] = useState(0);
+	const [prevImageIndex, setPrevImageIndex] = useState(2); // Start with the last image as prev
+	const [isTransitioning, setIsTransitioning] = useState(false);
+	
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setIsTransitioning(true);
+			setPrevImageIndex(currentImageIndex);
+			setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+			
+			// Reset transition state after animation completes
+			const transitionTimeout = setTimeout(() => {
+				setIsTransitioning(false);
+			}, 600); // Slightly longer than the animation duration
+			
+			return () => clearTimeout(transitionTimeout);
+		}, 4000); // Change image every 4 seconds
+		
+		return () => clearInterval(interval); // Cleanup on component unmount
+	}, [currentImageIndex]);
+	
 	return (
 		<section>
 			<Container fluid className="home-section" id="home">
@@ -36,12 +56,21 @@ function Home() {
 						</Col>
 
 						<Col md={5} style={{ paddingBottom: 20 }}>
-							<img
-								src={images[i]}
-								alt="home pic"
-								className="img-fluid"
-								style={{ maxHeight: "450px" }}
-							/>
+							<div className="image-slider-container">
+								{/* Current image */}
+								<img
+									src={images[currentImageIndex]}
+									alt="home pic"
+									className={`img-fluid slider-image ${isTransitioning ? 'image-enter' : 'image-active'}`}
+								/>
+								
+								{/* Previous image (for transition) */}
+								<img
+									src={images[prevImageIndex]}
+									alt="previous home pic"
+									className={`img-fluid slider-image ${isTransitioning ? 'image-exit' : 'image-inactive'}`}
+								/>
+							</div>
 						</Col>
 					</Row>
 				</Container>
