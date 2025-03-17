@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import logo from "/Assets/logo.png";
 import Button from "react-bootstrap/Button";
+import { BsChatDotsFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import {
 	AiFillGithub,
@@ -61,6 +62,15 @@ function NavBar() {
 								to="/about"
 								onClick={() => updateExpanded(false)}>
 								<AiOutlineUser style={{ marginBottom: "2px" }} /> About
+							</Nav.Link>
+						</Nav.Item>
+
+						<Nav.Item>
+							<Nav.Link
+								as={Link}
+								to="/chat"
+								onClick={() => updateExpanded(false)}>
+								<BsChatDotsFill style={{ marginBottom: "2px" }} /> Chat with AI
 							</Nav.Link>
 						</Nav.Item>
 
