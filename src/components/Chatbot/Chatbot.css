@@ -1,0 +1,370 @@
+.chatbot-section {
+    position: relative !important;
+    padding-top: 150px !important;
+    padding-bottom: 30px !important;
+    background-image: var(--section-background-color) !important;
+    color: white !important;
+    min-height: 100vh;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Styled container matching project cards */
+.custom-chatbot-container {
+    height: 65vh;
+    min-height: 450px;
+    max-height: 700px; 
+    width: 100%;
+    margin-bottom: 30px;
+    background-color: rgba(27, 20, 41, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 4px 5px 3px rgba(119, 53, 136, 0.459) !important;
+    backdrop-filter: blur(5px);
+    transition: all 0.5s ease 0s !important;
+    z-index: 1000 !important;
+    position: relative !important;
+    border: 1.7px solid rgba(200, 137, 230, 0.3) !important;
+}
+
+.custom-chatbot-container:hover {
+    box-shadow: 0 4px 8px 5px rgba(129, 72, 144, 0.561) !important;
+    transform: translateY(-5px);
+    border: 1.7px solid rgba(200, 137, 230, 0.6) !important;
+}
+
+.webchat-container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    z-index: 10 !important;
+}
+
+/* Botpress webchat overrides */
+.bpw-layout {
+    background-color: transparent !important;
+    font-family: "Playpen Sans", cursive !important;
+}
+
+/* Header styling */
+.bpw-header-container {
+    background: linear-gradient(to right, rgba(27, 20, 41, 0.9), rgba(98, 54, 134, 0.8)) !important;
+    border-bottom: 1px solid rgba(199, 112, 240, 0.4) !important;
+    padding: 15px 20px !important;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.bpw-header-title-container {
+    margin-left: 5px !important;
+}
+
+.bpw-header-title {
+    color: white !important;
+    font-family: "Playpen Sans", cursive !important;
+    font-weight: 600 !important;
+}
+
+.bpw-header-subtitle {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-family: "Playpen Sans", cursive !important;
+}
+
+/* Enhanced Chat bubbles */
+.bpw-chat-bubble {
+    background-color: rgba(45, 25, 80, 0.7) !important;
+    border: 1px solid rgba(199, 112, 240, 0.3) !important;
+    color: white !important;
+    padding: 12px 16px !important;
+    margin: 5px 0 !important;
+    border-radius: 15px !important;
+    max-width: 85% !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.2s ease !important;
+}
+
+.bpw-chat-bubble:hover {
+    border-color: rgba(199, 112, 240, 0.6) !important;
+    box-shadow: 0 3px 8px rgba(119, 53, 136, 0.25) !important;
+}
+
+.bpw-from-bot .bpw-chat-bubble {
+    background-color: rgba(58, 30, 93, 0.7) !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.bpw-from-user .bpw-chat-bubble {
+    background-color: rgba(98, 54, 134, 0.8) !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+/* Improved Avatar */
+.bpw-bot-avatar img, 
+.bpw-bot-avatar svg {
+    border: 2px solid #c770f0 !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 8px rgba(199, 112, 240, 0.4) !important;
+    background-color: white !important;
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: cover !important;
+}
+
+/* Chat container */
+.bpw-chat-container {
+    background-color: rgba(20, 15, 35, 0.4) !important;
+    border-radius: 0 0 10px 10px !important;
+}
+
+/* Message list */
+.bpw-msg-list {
+    padding: 20px !important;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(178, 121, 216, 0.959) #2d1950;
+}
+
+/* Composer area */
+.bpw-composer {
+    background: linear-gradient(to top, rgba(27, 20, 41, 0.9), rgba(27, 20, 41, 0.7)) !important;
+    border-top: 1px solid rgba(199, 112, 240, 0.3) !important;
+    padding: 10px 15px !important;
+}
+
+.bpw-composer textarea {
+    background-color: rgba(58, 30, 93, 0.3) !important;
+    border: 1px solid rgba(199, 112, 240, 0.4) !important;
+    color: white !important;
+    border-radius: 18px !important;
+    padding: 12px 45px 12px 15px !important;
+    transition: all 0.3s ease !important;
+    font-family: "Playpen Sans", cursive !important;
+}
+
+.bpw-composer textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.bpw-composer textarea:focus {
+    border-color: rgba(199, 112, 240, 0.8) !important;
+    box-shadow: 0 0 0 3px rgba(119, 53, 136, 0.2) !important;
+    outline: none !important;
+}
+
+/* Send button */
+.bpw-send-button {
+    background-color: #623686 !important;
+    border-radius: 50% !important;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+    right: 22px !important;
+}
+
+.bpw-send-button:hover {
+    background-color: #c770f0 !important;
+    transform: scale(1.05);
+}
+
+.bpw-send-button svg {
+    fill: white !important;
+}
+
+/* Date separator */
+.bpw-date-container {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 0.75rem !important;
+    margin: 15px 0 !important;
+}
+
+.bpw-date-container .bpw-small-line {
+    background-color: rgba(199, 112, 240, 0.4) !important;
+    height: 1px !important;
+}
+
+/* Typing indicator */
+.bpw-typing-group {
+    display: flex !important;
+    align-items: center !important;
+    margin-left: 20px !important;
+    background-color: rgba(58, 30, 93, 0.5) !important;
+    padding: 8px 12px !important;
+    border-radius: 18px !important;
+    width: fit-content !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.bpw-typing-bubble {
+    background-color: #c770f0 !important;
+    width: 8px !important;
+    height: 8px !important;
+    margin: 0 2px !important;
+    border-radius: 50% !important;
+    display: inline-block !important;
+    animation: typing 1.5s infinite ease-in-out !important;
+}
+
+.bpw-typing-bubble:nth-child(2) {
+    animation-delay: 0.2s !important;
+}
+
+.bpw-typing-bubble:nth-child(3) {
+    animation-delay: 0.4s !important;
+}
+
+@keyframes typing {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Scrollbar to match website style */
+.bpw-msg-list::-webkit-scrollbar {
+    width: 7px;
+}
+
+.bpw-msg-list::-webkit-scrollbar-track {
+    background: #2d1950;
+}
+
+.bpw-msg-list::-webkit-scrollbar-thumb {
+    background: rgba(178, 121, 216, 0.959);
+    border-radius: 12px;
+}
+
+.bpw-msg-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(222, 130, 235, 0.911);
+    border-radius: 12px;
+}
+
+/* Polishing animations */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.bpw-msg-list-container {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.bpw-chat-bubble-content {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Override some of the Botpress default styling */
+:root {
+    --bp-color-primary: #c770f0 !important;
+    --bp-color-background: rgba(20, 15, 35, 0.9) !important;
+    --bp-color-text: white !important;
+    --bp-color-secondary: #623686 !important;
+}
+
+/* Style for bot avatar in messages */
+.bp-msg-avatar img {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 36px !important;
+  height: 36px !important;
+  border: 2px solid #623686;
+}
+
+/* Enhanced message styling to complement the avatar */
+.bp-msg-bubble {
+  border-radius: 15px !important;
+  box-shadow: 0 1px 3px rgba(119, 53, 136, 0.3) !important;
+}
+
+/* Animation for the avatar appearance */
+.bp-msg-avatar {
+  transition: transform 0.3s ease;
+}
+
+.bp-msg-avatar:hover {
+  transform: scale(1.1);
+}
+
+/* Add these specific avatar CSS rules to your existing CSS file */
+
+/* Make avatar image more visible */
+.bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content .bpw-bubble-avatar img,
+.bp-msg-avatar img {
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  width: 40px !important;
+  height: 40px !important;
+  border: 2px solid #623686 !important;
+  box-shadow: 0 0 5px rgba(99, 54, 134, 0.6) !important;
+  display: block !important;
+  background-color: white !important; /* Add background to make sure transparent PNGs are visible */
+}
+
+/* Force avatar to be visible */
+.bpw-from-bot .bpw-chat-bubble-avatar,
+.bp-msg-avatar {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Add these specific message visibility rules */
+
+/* Ensure message content is visible */
+.bpw-chat-bubble-content {
+  color: white !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Make message bubbles clearly visible */
+.bpw-chat-bubble {
+  background-color: #2d1950 !important;
+  border: 1px solid #c770f0 !important;
+  color: white !important;
+  opacity: 1 !important;
+  padding: 12px 15px !important;
+  margin: 5px 0 !important;
+  max-width: 80% !important;
+  border-radius: 15px !important;
+  word-wrap: break-word !important;
+}
+
+/* User messages styling */
+.bpw-from-user .bpw-chat-bubble {
+  background-color: #623686 !important;
+  align-self: flex-end !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* Bot messages styling */
+.bpw-from-bot .bpw-chat-bubble {
+  background-color: #3a1e5d !important;
+  align-self: flex-start !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+/* Message container to ensure proper display */
+.bpw-msg-list {
+  padding: 15px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: calc(100% - 100px) !important;
+}
+
+/* Fix z-index issues that might hide the chat */
+.webchat-container {
+  z-index: 10 !important;
+}
+
+.custom-chatbot-container {
+  z-index: 1000 !important;
+  position: relative !important;
+}
+
+/* Make sure the typing indicator is visible */
+.bpw-typing-group {
+  display: flex !important;
+  visibility: visible !important;
+  margin-left: 20px !important;
+}
