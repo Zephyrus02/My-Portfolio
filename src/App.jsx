@@ -11,11 +11,12 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate
+  Navigate,
 } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import "./style.css";
 import "./App.css";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -41,9 +42,10 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/chat" element={<Chatbot />} />
-          <Route path="*" element={<Navigate to="/"/>} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Footer />
+        <SpeedInsights />
       </div>
     </Router>
   );
