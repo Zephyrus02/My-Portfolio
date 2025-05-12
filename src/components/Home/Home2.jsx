@@ -4,8 +4,8 @@ import myImg from "/Assets/me.png";
 import Tilt from "react-parallax-tilt";
 import {
 	AiFillGithub,
-	AiOutlineTwitter,
 	AiFillInstagram,
+	AiFillMail
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
@@ -32,7 +32,7 @@ function Home2() {
 							</i>
 							<br />
 							<br />
-							My field of Interest's are building new &nbsp;
+							My field of Interest's are building new&nbsp;
 							<i>
 								<b className="purple">Web Technologies </b> and
 								also in areas related to{" "}
@@ -69,20 +69,20 @@ function Home2() {
 						<ul className="home-about-social-links">
 							<li className="social-icons">
 								<a
+									href="mailto:aneeshraskar@gmail.com"
+									target="_blank"
+									rel="noreferrer"
+									className="icon-colour  home-social-icons">
+									<AiFillMail />
+								</a>
+							</li>
+							<li className="social-icons">
+								<a
 									href="https://github.com/Zephyrus02"
 									target="_blank"
 									rel="noreferrer"
 									className="icon-colour  home-social-icons">
 									<AiFillGithub />
-								</a>
-							</li>
-							<li className="social-icons">
-								<a
-									href="https://twitter.com/aneesh_raskar"
-									target="_blank"
-									rel="noreferrer"
-									className="icon-colour  home-social-icons">
-									<AiOutlineTwitter />
 								</a>
 							</li>
 							<li className="social-icons">
