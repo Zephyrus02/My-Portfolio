@@ -32,7 +32,7 @@ function Projects() {
               imgPath={CVL}
               isBlog={false}
               title="Collaborative Vehicle Localiation using LSTM Based Federated Learning for Trajectory Prediction"
-              description="An advanced system designed to revolutionize the job application process by intelligently parsing resumes, offering personalized career recommendations, and enhancing skills. Powered by cutting-edge AI and NLP, it evaluates resumes to provide a comprehensive score, suggest skill improvements, recommend relevant courses, and match users with tailored job opportunities. By integrating career insights, resume optimization, and dynamic job market analysis, this system empowers users to unlock their full potential and streamline their path to success."
+              description="Developed a collaborative vehicle localization system using LSTM based federated learning for trajectory prediction. The system uses the GPS data of the vehicles to predict the trajectory of the vehicles and also uses the federated learning technique to train the model on the client devices without sharing the data. The system is able to minimize the average displacement error by 29.2% when compared to traditional approaches."
               ghLink="https://github.com/Zephyrus02/Collaborative-Vehicle-Localization-using-LSTM-based-Federated-Learning-for-Trajecory-Prediction"
             />
           </Col>
