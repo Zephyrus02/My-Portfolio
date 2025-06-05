@@ -31,6 +31,36 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Health check API call
+  useEffect(() => {
+    const checkApiHealth = async () => {
+      try {
+        console.log("Checking API health...");
+        const response = await fetch(
+          `${import.meta.env.VITE_EMAIL_SERVICE_API}/health`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("API health check successful:", data);
+        } else {
+          console.warn("API health check failed with status:", response.status);
+        }
+      } catch (error) {
+        console.error("API health check error:", error);
+      }
+    };
+
+    // Call health check when the app loads
+    checkApiHealth();
+  }, []); // Empty dependency array means this runs once when component mounts
+
   return (
     <Router>
       <Preloader load={load} />

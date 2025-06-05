@@ -20,6 +20,7 @@ function Chatbot() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [healthStatus, setHealthStatus] = useState("checking"); // possible values: "online", "offline", "checking"
+  const [mailingServiceStatus, setMailingServiceStatus] = useState("checking"); // Add mailing service status
   const webchatRef = useRef(null);
 
   // Using import.meta.env instead of process.env for Vite projects
@@ -57,6 +58,47 @@ function Chatbot() {
     setTimeout(() => {
       setToast((prev) => ({ ...prev, show: false }));
     }, 5000);
+  };
+
+  // Function to check mailing service health
+  const checkMailingServiceHealth = async () => {
+    try {
+      console.log("Checking mailing service health...");
+      const response = await fetch(
+        `${import.meta.env.VITE_EMAIL_SERVICE_API}/health`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "cors", // Explicitly set CORS mode
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Mailing service health check successful:", data);
+        setMailingServiceStatus("online");
+      } else {
+        console.warn(
+          "Mailing service health check failed with status:",
+          response.status
+        );
+        setMailingServiceStatus("offline");
+      }
+    } catch (error) {
+      console.error("Mailing service health check error:", error);
+
+      // Check if it's a CORS error specifically
+      if (error.message.includes("CORS") || error.message.includes("fetch")) {
+        console.warn(
+          "CORS error detected - service may be running but CORS not configured"
+        );
+        setMailingServiceStatus("cors-error");
+      } else {
+        setMailingServiceStatus("offline");
+      }
+    }
   };
 
   const handleFormChange = (e) => {
@@ -262,19 +304,42 @@ function Chatbot() {
     }
   }, [clientId]);
 
+  // Add useEffect to check mailing service health on component mount
+  useEffect(() => {
+    checkMailingServiceHealth();
+
+    // Check mailing service health every 30 seconds
+    const interval = setInterval(checkMailingServiceHealth, 30000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   // Health indicator component
-  const HealthIndicator = ({ status }) => {
+  const HealthIndicator = ({ status, service = "Chatbot" }) => {
+    const getStatusText = () => {
+      switch (status) {
+        case "online":
+          return `${service} Online`;
+        case "offline":
+          return `${service} Offline`;
+        case "checking":
+          return "Connecting...";
+        case "cors-error":
+          return `${service} (CORS Issue)`;
+        default:
+          return "Unknown Status";
+      }
+    };
+
     return (
       <div className="health-indicator-container">
-        <div className={`health-indicator ${status}`}>
+        <div
+          className={`health-indicator ${
+            status === "cors-error" ? "checking" : status
+          }`}
+        >
           <span className="health-indicator-dot"></span>
-          <span className="health-indicator-text">
-            {status === "online"
-              ? "Chatbot Online"
-              : status === "offline"
-              ? "Chatbot Offline"
-              : "Connecting..."}
-          </span>
+          <span className="health-indicator-text">{getStatusText()}</span>
         </div>
       </div>
     );
@@ -307,7 +372,7 @@ function Chatbot() {
             </p>
 
             {/* Health status indicator */}
-            <HealthIndicator status={healthStatus} />
+            <HealthIndicator status={healthStatus} service="Chatbot" />
 
             {loading ? (
               <div className="text-center my-5">
@@ -348,6 +413,12 @@ function Chatbot() {
             <p style={{ color: "white" }}>
               Have a question or want to work together? Feel free to reach out!
             </p>
+
+            {/* Mailing Service Health Status Indicator */}
+            <HealthIndicator
+              status={mailingServiceStatus}
+              service="Email Service"
+            />
 
             <Form
               className={`contact-form ${isDragging ? "dragging" : ""}`}
@@ -472,7 +543,11 @@ function Chatbot() {
                 variant="primary"
                 type="submit"
                 className="contact-submit-btn"
-                disabled={submitStatus === "sending"}
+                disabled={
+                  submitStatus === "sending" ||
+                  mailingServiceStatus === "offline"
+                  // Note: Don't disable for "cors-error" since the form submission might still work
+                }
               >
                 {submitStatus === "sending" ? (
                   <>
@@ -483,10 +558,28 @@ function Chatbot() {
                     ></span>
                     Sending...
                   </>
+                ) : mailingServiceStatus === "offline" ? (
+                  "Email Service Unavailable"
+                ) : mailingServiceStatus === "cors-error" ? (
+                  "Send Message (Health Check Limited)"
                 ) : (
                   "Send Message"
                 )}
               </Button>
+
+              {mailingServiceStatus === "cors-error" && (
+                <div className="alert alert-info mt-3">
+                  <strong>Note:</strong> Email service health check has CORS
+                  limitations, but email sending should still work.
+                </div>
+              )}
+
+              {mailingServiceStatus === "offline" && (
+                <div className="alert alert-warning mt-3">
+                  <strong>Email service is currently offline.</strong> Please
+                  try again later or contact me through other means.
+                </div>
+              )}
 
               {submitStatus === "success" && (
                 <div className="alert alert-success mt-3">
