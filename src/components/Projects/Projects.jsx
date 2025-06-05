@@ -45,7 +45,7 @@ function Projects() {
               title="Ascendancy eSports"
               description="An full stack webs application for end-to-end management of eSports tournaments for Valorant. The website is built using React.js and Node.js and uses MongoDB as the database. The website has a very attractive UI/UX based around a gaming theme. The website includes realtime showcasing of the tournament leaderboard and brackets, and also has an interactive map veto room architecture.  The website includes payment gateway for team registrateion, and an admin panel for managing the tournament sessions, scheduling matches and managing users. "
               ghLink="https://github.com/Zephyrus02/Ascendancy"
-			  demoLink="https://www.ascendancy-esports.me/"
+              demoLink="https://www.ascendancy-esports.me/"
             />
           </Col>
 
@@ -57,6 +57,7 @@ function Projects() {
               title="NLP Resume Parser"
               description="An advanced system designed to revolutionize the job application process by intelligently parsing resumes, offering personalized career recommendations, and enhancing skills. Powered by cutting-edge AI and NLP, it evaluates resumes to provide a comprehensive score, suggest skill improvements, recommend relevant courses, and match users with tailored job opportunities. By integrating career insights, resume optimization, and dynamic job market analysis, this system empowers users to unlock their full potential and streamline their path to success."
               ghLink="https://github.com/Zephyrus02/NLP-Resume-Parser"
+              demoLink="https://skill-scout-jet.vercel.app/"
             />
           </Col>
 
