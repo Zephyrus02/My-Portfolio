@@ -7,6 +7,7 @@ import driver from "/Assets/Projects/driver.png";
 import attendance from "/Assets/Projects/attendance.png";
 import disaster from "/Assets/Projects/disaster.png";
 import CVL from "/Assets/Projects/cvl.png";
+import Lumen from "/Assets/Projects/Lumen.png";
 import Ascendancy from "/Assets/Projects/Ascendancy.png";
 import valo from "/Assets/Projects/valo.png";
 import crime from "/Assets/Projects/crime.png";
@@ -26,6 +27,17 @@ function Projects() {
           Here are a few projects I've worked on recently.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+        {/* Lumen AI */}
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={Lumen}
+              isBlog={false}
+              title="Lumen AI"
+              description="Developing a desktop application can assist users in managing their daily tasks, enhancing productivity, and providing a user-friendly interface for various functionalities. The application is designed to be intuitive and easy to use, with a focus on improving the user experience. It enables users to use their local AI models anywhere in the system, making it a versatile tool for various tasks. The application is built using Wails and React.js, and it is designed to be lightweight and efficient, ensuring that it runs smoothly on most systems. The application is also designed to be customizable, allowing users to tailor it to their specific needs and preferences."
+              ghLink="https://github.com/Zephyrus02/Lumem-AI"
+            />
+          </Col>
+
           {/* Collaborative Vehicle Localiation using LSTM Based Federated Learning for Trajectory Prediction */}
           <Col md={4} className="project-card">
             <ProjectCard
