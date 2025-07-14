@@ -13,6 +13,7 @@ import {
 } from "react-icons/di";
 import {
 	SiPytorch,
+	SiGo,
 	SiWails,
 	SiFlask,
 	SiDjango,
@@ -49,6 +50,9 @@ function Techstack() {
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
 				<SiFlask />
+			</Col>
+			<Col xs={4} md={2} className="tech-icons">
+				<SiGo />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
 				<SiWails />
