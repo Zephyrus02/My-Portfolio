@@ -14,6 +14,8 @@ import crime from "/Assets/Projects/crime.png";
 import irrigation from "/Assets/Projects/irrigation.png";
 import NLP from "/Assets/Projects/NLP.png";
 import offloading from "/Assets/Projects/offloading.png";
+import IJFMR from "/Assets/Projects/IJFMR.png";
+import JIDSBDM from "/Assets/Projects/JIDSBDM.png";
 
 function Projects() {
   return (
@@ -24,10 +26,10 @@ function Projects() {
           My Recent <strong className="purple">Works </strong>
         </h1>
         <p style={{ color: "white" }}>
-          Here are a few projects I've worked on recently.
+          Here are a few projects I've worked on.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-        {/* Lumen AI */}
+          {/* Lumen AI */}
           <Col md={4} className="project-card">
             <ProjectCard
               imgPath={Lumen}
@@ -159,6 +161,34 @@ function Projects() {
               title="Driver Drowsiness Detection System"
               description="An alerting system in cars to detect drowsiness of the driver using OpenCV and Dlib library. The system uses the live feed from the camera mounted on the dashboard of the car to detect the facial landmarks of the driver and then predict the drowsiness of the driver. The system alerts the driver with a sound alarm if the driver is found to be drowsy."
               ghLink="https://github.com/Zephyrus02/Drowsiness-Detection-using-OpenCV"
+            />
+          </Col>
+        </Row>
+        {/* Publications Section */}
+        <h1 className="project-heading" style={{ marginTop: "40px" }}>
+          My <strong className="purple">Publications</strong>
+        </h1>
+        <p style={{ color: "white" }}>
+          Here are some of my research publications.
+        </p>
+        <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+          {/* Example Publication Card */}
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={IJFMR} // Use an appropriate image
+              isBlog={false}
+              title="Advancing IOT Interoperability: Dynamic Protocol Translation through Machine Learning For Enhanced Communication Efficiency"
+              description="This study presents a pioneering methodology for Dynamic Protocol Translation in the Internet of Things (IoT), aiming to overcome challenges posed by diverse communication protocols among IoT devices. The primary objective is to develop a two-fold approach: first, acquiring data from IoT devices through their specific protocols, preprocessing it for consistency, and employing Natural Language Processing (NLP) techniques for semantic extraction and normalization; second, implementing a machine learning model, incorporating neural networks, to discern correlations between normalized representations and target protocol structures. The emphasis is on rigorous testing, validation, & real-time translation capabilities. The main conclusions of the study demonstrate how well the suggested Logistic Regression model performed, with an accuracy of 96.76%, in contrast to an existing model (XML-JSON) that had an accuracy of 82.41%. The detailed evaluation metrics, which include F1 score, precision, and recall, demonstrate how well the suggested method works to solve protocol translation issues. The iterative feedback loop, real-time translation, and secure data transfer of the proposed system improve its adaptability and reliability. This research enhances the field of IoT communication by offering a comprehensive solution for smooth interoperability & communication efficiency in a range of IoT applications."
+              visitLink="https://pdfs.semanticscholar.org/356c/1c24e5065a204c52a6efa2973fc88d9a709a.pdf"
+            />
+          </Col>
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={JIDSBDM} // Use an appropriate image
+              isBlog={false}
+              title="Waste Management Optimization Using Reinforcement Learning Algorithm"
+              description="Urbanization and population growth have increased waste, creating an excellent challenge for waste management systems. In response to these challenges, this study investigates using Reinforcement Learning (RL) algorithms to optimize waste management in urban environments. The primary purpose of this study is to solve the problem of changing the waste collection process, which is essential in reducing operating costs and increasing overall profit, with the effects of waste management. The use of Q-learning, a reinforcement learning algorithm, forms the basis of our approach. Q-learning was chosen for its performance in handling arbitrary decisions and its ability to make weak decisions, perfectly adapting to the complexities and differences in the garbage collection period. Extensive testing and analysis demonstrate the effectiveness of the proposed support learning-based waste management optimization model. This research aims to use innovative technology to improve how we plan waste collection on the fly, making waste management more efficient and cost-effective."
+              visitLink="https://matjournals.net/engineering/index.php/JIDSBDM/article/view/430" // Replace with actual publication link
             />
           </Col>
         </Row>
