@@ -163,7 +163,8 @@ function Chatbot() {
     setIsConnecting(true);
 
     try {
-      const tokenUrl = "http://localhost:3001/api/token";
+      // Use a relative URL for the API endpoint
+      const tokenUrl = "/api/token";
       const requestData = {
         roomName: "CA_EGo3ovUmGWRt",
         participantName: `user-${Date.now()}`,
