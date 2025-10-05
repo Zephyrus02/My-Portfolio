@@ -12,12 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/token", async (req, res) => {
-  // Only allow POST requests
-  if (req.method !== "POST") {
-    res.setHeader("Allow", ["POST"]);
-    return res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
-
   try {
     const { roomName, participantName, dispatchAgent } = req.body;
 
@@ -32,7 +26,7 @@ app.post("/api/token", async (req, res) => {
     const livekitUrl = process.env.VITE_LIVEKIT_URL;
 
     if (!apiKey || !apiSecret || !livekitUrl) {
-      console.error("❌ Missing LiveKit credentials on the server");
+      console.error("❌ Missing LiveKit credentials");
       return res.status(500).json({ message: "Server configuration error" });
     }
 
@@ -77,7 +71,7 @@ app.post("/api/token", async (req, res) => {
       }
     }
 
-    return res.status(200).json({ token: jwt });
+    return res.json({ token: jwt });
   } catch (error) {
     console.error("❌ Error generating token:", error);
     return res
