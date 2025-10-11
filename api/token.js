@@ -1,54 +1,22 @@
-import dotenv from "dotenv";
-import express from "express";
-import cors from "cors";
 import { AccessToken, AgentDispatchClient } from "livekit-server-sdk";
 
-dotenv.config({ path: ".env" });
+export default async function handler(req, res) {
+  // Enable CORS
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-const app = express();
-const port = 3001;
-
-app.use(cors());
-app.use(express.json());
-
-app.get('/api/agent-status', async (req, res) => {
-  try {
-    const apiKey = process.env.LIVEKIT_API_KEY;
-    const apiSecret = process.env.LIVEKIT_API_SECRET;
-    const livekitUrl = process.env.VITE_LIVEKIT_URL;
-    
-    if (!apiKey || !apiSecret || !livekitUrl) {
-      return res.status(503).json({ 
-        status: 'offline', 
-        agentAvailable: false,
-        message: 'Missing LiveKit credentials' 
-      });
-    }
-    
-    const agentDispatchClient = new AgentDispatchClient(
-      livekitUrl.replace("wss:", "https:"),
-      apiKey,
-      apiSecret
-    );
-    
-    // Explicitly set status 200 and send JSON
-    return res.status(200).json({ 
-      status: 'online',
-      agentAvailable: true,
-      message: 'Voice agent is ready'
-    });
-  } catch (error) {
-    console.error('Agent status check error:', error);
-    return res.status(503).json({ 
-      status: 'offline', 
-      agentAvailable: false,
-      message: error.message 
-    });
+  // Handle preflight requests
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
   }
-});
 
+  if (req.method !== "POST") {
+    res.setHeader("Allow", ["POST"]);
+    return res.status(405).json({ message: "Method Not Allowed" });
+  }
 
-app.post("/api/token", async (req, res) => {
   try {
     const { roomName, participantName, dispatchAgent } = req.body;
 
@@ -67,6 +35,8 @@ app.post("/api/token", async (req, res) => {
       return res.status(500).json({ message: "Server configuration error" });
     }
 
+    console.log("🎫 Generating token for:", { roomName, participantName });
+
     // Create access token
     const token = new AccessToken(apiKey, apiSecret, {
       identity: participantName,
@@ -82,28 +52,24 @@ app.post("/api/token", async (req, res) => {
 
     const jwt = await token.toJwt();
 
-    // Explicitly dispatch agent if requested
+    // Dispatch agent if requested
     if (dispatchAgent) {
       try {
         const agentDispatchClient = new AgentDispatchClient(
-          livekitUrl.replace("wss:", "https:"), // Convert WebSocket URL to HTTP
+          livekitUrl.replace("wss:", "https:"),
           apiKey,
           apiSecret
         );
 
         console.log("🤖 Dispatching agent to room:", roomName);
 
-        // Replace 'your-agent-name' with your actual agent name
         await agentDispatchClient.createDispatch(roomName, "CA_EGo3ovUmGWRt", {
           metadata: JSON.stringify({ user: participantName }),
         });
 
         console.log("✅ Agent dispatched successfully");
       } catch (agentError) {
-        console.error(
-          "⚠️ Agent dispatch failed (continuing anyway):",
-          agentError.message
-        );
+        console.error("⚠️ Agent dispatch failed:", agentError.message);
         // Don't fail the token request if agent dispatch fails
       }
     }
@@ -115,9 +81,4 @@ app.post("/api/token", async (req, res) => {
       .status(500)
       .json({ message: "Internal Server Error: " + error.message });
   }
-});
-
-app.listen(port, () => {
-  console.log(`🚀 Token server running on http://localhost:${port}`);
-  console.log("📋 Environment variables loaded from .env.local");
-});
+}

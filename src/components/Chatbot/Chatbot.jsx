@@ -132,6 +132,8 @@ function Chatbot() {
   const [error, setError] = useState(null);
   const [healthStatus, setHealthStatus] = useState("checking");
   const [mailingServiceStatus, setMailingServiceStatus] = useState("checking");
+  const [voiceAgentStatus, setVoiceAgentStatus] = useState("checking");
+
   const webchatRef = useRef(null);
 
   const clientId = import.meta.env.VITE_BOTPRESS_CLIENT_ID || "";
@@ -158,12 +160,42 @@ function Chatbot() {
   const [voiceAgentConnected, setVoiceAgentConnected] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
 
+  const checkVoiceAgentHealth = async () => {
+    try {
+      const response = await fetch("/api/agent-status", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setVoiceAgentStatus(data.status === "online" ? "online" : "offline");
+      } else {
+        setVoiceAgentStatus("offline");
+      }
+    } catch (error) {
+      if (error.message.includes("CORS") || error.message.includes("fetch")) {
+        setVoiceAgentStatus("cors-error");
+      } else {
+        setVoiceAgentStatus("offline");
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkVoiceAgentHealth();
+    const interval = setInterval(checkVoiceAgentHealth, 30000); // Check every 30 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   const connectToVoiceAgent = async () => {
     console.log("🎤 Starting voice agent connection...");
     setIsConnecting(true);
 
     try {
-      const tokenUrl = "http://localhost:3001/api/token";
+      const tokenUrl = "/api/token";
       const requestData = {
         roomName: "CA_EGo3ovUmGWRt",
         participantName: `user-${Date.now()}`,
@@ -391,6 +423,7 @@ function Chatbot() {
               Click the button below to start a real-time voice conversation
               with my AI agent.
             </p>
+            <HealthIndicator status={voiceAgentStatus} service="Voice Agent" />
 
             {!voiceAgentConnected ? (
               <div className="voice-agent-start">

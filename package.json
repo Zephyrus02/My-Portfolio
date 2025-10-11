@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run token-server\" \"vite\"",
-    "token-server": "node server/token-server.js",
+    "dev": "dev",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -29,9 +28,9 @@
     "express": "^4.18.0",
     "livekit-client": "^2.15.8",
     "livekit-server-sdk": "^2.14.0",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "react-bootstrap": "^2.2.1",
-    "react-dom": "^17.0.2",
+    "react-dom": "^18.2.0",
     "react-github-calendar": "^3.2.2",
     "react-icons": "^4.8.0",
     "react-parallax-tilt": "^1.7.42",
