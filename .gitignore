@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .env
 .vercel
+
+# OpenMemory - IDE/Assistant specific rules
+.cursor/rules/openmemory.mdc
