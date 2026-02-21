@@ -11,12 +11,12 @@ function AboutCard() {
 						Hello Everyone, I am <span className="purple">Aneesh Raskar </span>
 						from <span className="purple"> Pune, India.</span>
 						<br />
-						I am currently an undergrad student and Vellore Institute of Technology, Chennai.
+						I am a graduate of Vellore Institute of Technology, Chennai.
 						<br />
-						I am persuing B.Tech in Computer Science with specialization in
+						I persued my B.Tech in Computer Science with specialization in
 						Artificial Intelligence and Machine Learning.
 						<br />
-						I am a Software Engineeer at Samsan Labs
+						I am a Software Engineer at Samsan Labs
 						<br />
 						<br />
 						Apart from coding, some other activities that I love to do!

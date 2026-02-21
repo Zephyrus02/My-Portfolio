@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { CgCPlusPlus } from "react-icons/cg";
+
 import {
 	DiJavascript1,
 	DiReact,
@@ -9,14 +9,14 @@ import {
 	DiPostgresql,
 	DiGit,
 	DiJava,
-	DiDjango
+	DiRedis
 } from "react-icons/di";
 import {
 	SiPytorch,
 	SiGo,
-	SiWails,
 	SiFlask,
 	SiDjango,
+	SiFastapi,
 	SiGithub,
 	SiTypescript,
 	SiNextdotjs,
@@ -24,15 +24,12 @@ import {
 	SiMysql,
 	SiKeras,
 	SiTensorflow,
-	SiMongodb
+	SiMongodb,
 } from "react-icons/si";
 
 function Techstack() {
 	return (
 		<Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
-			<Col xs={4} md={2} className="tech-icons">
-				<CgCPlusPlus />
-			</Col>
 			<Col xs={4} md={2} className="tech-icons">
 				<DiJavascript1 />
 			</Col>
@@ -40,22 +37,25 @@ function Techstack() {
 				<SiTypescript />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
+				<DiPython />
+			</Col>
+			<Col xs={4} md={2} className="tech-icons">
 				<DiNodejs />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
-				<DiDjango />
+				<SiDjango />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
-				<DiReact />
+				<SiFastapi />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
 				<SiFlask />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
-				<SiGo />
+				<DiReact />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
-				<SiWails />
+				<SiNextdotjs />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
 				<SiMongodb />
@@ -64,22 +64,10 @@ function Techstack() {
 				<DiPostgresql />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
-				<SiNextdotjs />
-			</Col>
-			<Col xs={4} md={2} className="tech-icons">
-				<DiGit />
-			</Col>
-			<Col xs={4} md={2} className="tech-icons">
-				<SiGithub />
-			</Col>
-			<Col xs={4} md={2} className="tech-icons">
 				<SiMysql />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
-				<DiPython />
-			</Col>
-			<Col xs={4} md={2} className="tech-icons">
-				<SiDjango />
+				<DiRedis />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
 				<SiPytorch />
@@ -95,6 +83,12 @@ function Techstack() {
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
 				<DiJava />
+			</Col>
+			<Col xs={4} md={2} className="tech-icons">
+				<DiGit />
+			</Col>
+			<Col xs={4} md={2} className="tech-icons">
+				<SiGithub />
 			</Col>
 		</Row>
 	);

@@ -11,6 +11,8 @@ import {
 	SiAmazonaws,
 	SiGooglecloud,
 	SiDocker,
+	SiWarp,
+	SiSupabase
 } from "react-icons/si";
 
 function Toolstack() {
@@ -26,13 +28,10 @@ function Toolstack() {
 				<SiPostman />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
-				<SiGooglecolab />
+				<SiWarp />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
-				<SiJupyter />
-			</Col>
-			<Col xs={4} md={2} className="tech-icons">
-				<SiKaggle />
+				<SiSupabase />
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
 				<SiVercel />
@@ -45,6 +44,15 @@ function Toolstack() {
 			</Col>
 			<Col xs={4} md={2} className="tech-icons">
 				<SiDocker />
+			</Col>
+			<Col xs={4} md={2} className="tech-icons">
+				<SiGooglecolab />
+			</Col>
+			<Col xs={4} md={2} className="tech-icons">
+				<SiJupyter />
+			</Col>
+			<Col xs={4} md={2} className="tech-icons">
+				<SiKaggle />
 			</Col>
 		</Row>
 	);

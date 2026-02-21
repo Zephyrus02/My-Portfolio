@@ -23,12 +23,12 @@ function Home2() {
 							with specialization in Artificial Intelligence and Machine
 							Learning from Vellore Institute of Technology, Chennai. Coding has
 							always been my forte and I also am passionate about Web
-							Development and have been working on projects for the past 2
+							Development and have been working on projects for the past 4
 							years.
 							<br />
 							<br />I am fluent in classics like
 							<i>
-								<b className="purple"> Java, C++ and Python. </b>
+								<b className="purple"> JavaScript, Typescript and Python. </b>
 							</i>
 							<br />
 							<br />
@@ -41,7 +41,7 @@ function Home2() {
 							<br />
 							<br />
 							Whenever possible, I also apply my passion for developing products
-							with <b className="purple">Node.js, Flask or Django</b> and
+							with <b className="purple">Node.js, FastAPI or Django</b> and
 							<i>
 								<b className="purple">
 									{" "}
