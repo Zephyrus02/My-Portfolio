@@ -19,11 +19,12 @@ function Home2() {
 							LET ME <span className="purple"> INTRODUCE </span> MYSELF
 						</h1>
 						<p className="home-about-body">
-							I am an undergrad student pursuing B.Tech in Computer Science
+							I am a Software Engineer at HCL Tech.
+							I have pursued B.Tech in Computer Science
 							with specialization in Artificial Intelligence and Machine
 							Learning from Vellore Institute of Technology, Chennai. Coding has
 							always been my forte and I also am passionate about Web
-							Development and have been working on projects for the past 4
+							Development & AI and have been working on projects for the past 4
 							years.
 							<br />
 							<br />I am fluent in classics like
@@ -36,7 +37,7 @@ function Home2() {
 							<i>
 								<b className="purple">Web Technologies </b> and
 								also in areas related to{" "}
-								<b className="purple">Machine Learning, Deep Learning and NLP.</b>
+								<b className="purple">AI, Machine Learning, Deep Learning and NLP.</b>
 							</i>
 							<br />
 							<br />

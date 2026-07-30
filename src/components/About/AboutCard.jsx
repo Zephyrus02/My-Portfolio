@@ -16,7 +16,7 @@ function AboutCard() {
 						I persued my B.Tech in Computer Science with specialization in
 						Artificial Intelligence and Machine Learning.
 						<br />
-						I am a Software Engineer at Samsan Labs
+						I am a Software Engineer at HCL Tech
 						<br />
 						<br />
 						Apart from coding, some other activities that I love to do!
